@@ -12,6 +12,7 @@
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
+ *
  ******************************************************************************/
 
 require "Include/Config.php";
@@ -31,20 +32,8 @@ $sDeleteError = "";
 
 if ($sAction = 'delete' && strlen($sFund) > 0)
 {
-	// Determine if this fund is being used (has donations assigned to it)
-	$sSQL = "SELECT '' FROM donationamounts_dna WHERE dna_fun_ID = '" . $sFund . "'";
-	$rsUsage = RunQuery($sSQL);
-	$numUses = mysql_num_rows($rsUsage);
-
-	if ($numUses > 0)
-	{
-		$sDeleteError = gettext("Cannot delete this fund.  It is being used by ") . $numUses . gettext(" donations!");
-	}
-	else
-	{
-		$sSQL = "DELETE FROM donationfund_fun WHERE fun_ID = '" . $sFund . "'";
-		RunQuery($sSQL);
-	}
+	$sSQL = "DELETE FROM donationfund_fun WHERE fun_ID = '" . $sFund . "'";
+	RunQuery($sSQL);
 }
 
 $sPageTitle = gettext("Donation Fund Editor");
