@@ -1,6 +1,6 @@
 <?php
 
-# $Id: functions.inc,v 1.1 2007/06/22 23:45:27 amagrace Exp $
+# $Id: functions.inc,v 1.2 2007/09/25 05:00:38 amagrace Exp $
 
 # probably a bad place to put this, but for error reporting purposes
 # $pview must be defined. if it's not then there's errors generated all
@@ -13,8 +13,10 @@ if (!isset($pview)) {
 function print_header($day, $month, $year, $area)
 {
 	global $mrbs_company, $search_str, $locale_warning;
+// churchinfo MRBS integration begins	
 	global $iNavMethod;
 	require_once('../Include/Header-function.php');
+// churchinfo MRBS integration ends
 	# If we dont know the right date then make it up 
 	if(!$day)
 		$day   = date("d");
@@ -40,16 +42,18 @@ function print_header($day, $month, $year, $area)
 	header("Pragma: no-cache");                          // HTTP 1.0
 	header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");    // Date in the past
 
-	// Top level menu index counter
+// churchinfo MRBS integration begins	
+// Top level menu index counter
 	$MenuFirst = 1;
+// churchinfo MRBS integration ends	
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
                       "http://www.w3.org/TR/html4/loose.dtd">
-<HTML>
-  <HEAD>
-<?php 
+<?php
+// churchinfo MRBS integration begins	
 	$sPageTitle = "Resource Booking System";
 	Header_head_metatag(); 
+// churchinfo MRBS integration ends
    include "style.inc";
 ?>
     <SCRIPT LANGUAGE="JavaScript">
@@ -141,7 +145,7 @@ function ChangeOptionDays(formObj, prefix)
   </HEAD>
   <body onload="javascript:scrollToCoordinates()">
 <?php
-
+// churchinfo MRBS integration begins
 	Header_Body_scripts();
 
 	if ($iNavMethod != 2)	{
@@ -150,11 +154,12 @@ function ChangeOptionDays(formObj, prefix)
 	else {
 		Header_body_nomenu();
 	}
-
+// churchinfo MRBS integration ends
 	 if ( $GLOBALS["pview"] != 1 ) { ?>
 
    <?php # show a warning if this is using a low version of php
        if (substr(phpversion(), 0, 1) == 3)
+	       echo get_vocab("not_php3");
 	       echo get_vocab("not_php3");
 //       if (!empty($locale_warning))
 //               echo "[Warning: ".$locale_warning."]";

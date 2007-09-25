@@ -1,23 +1,18 @@
 <?php
 /*****************************************************************************\
 *                                                                             *
-*   File name       session_php.inc                                           *
+*   File name       session_CI.inc                                           *
 *                                                                             *
-*   Description     Use PHP built-in sessions handling                        *
+*   Description     Use ChurchInfo session to authenticate                    *
 *                                                                             *
 *   Notes           To use this authentication scheme, set in                 *
 *                   config.inc.php:                                           *
-*                       $auth["session"]  = "php";                            *
+*                       $auth["session"]  = "CI";                             *
 *                                                                             *
 *                                                                             *
 *   History                                                                   *
-*    2003/11/09 JFL Created this file                                         *
-*    Remaining history in ChangeLog and CVS logs                              *
 *                                                                             *
 \*****************************************************************************/
-
-// $Id: session_pkg.inc,v 1.1 2007/06/22 23:45:29 amagrace Exp $
-
 
 global $PHP_SELF;
 

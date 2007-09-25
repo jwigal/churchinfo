@@ -1,27 +1,12 @@
 <?php
 
-# $Id: config.inc.php,v 1.1 2007/06/22 23:45:27 amagrace Exp $
+# $Id: config.inc.php,v 1.2 2007/09/25 04:59:46 amagrace Exp $
 
 ###########################################################################
 #   MRBS Configuration File
 #   Configure this file for your site.
 #   You shouldn't have to modify anything outside this file.
 ###########################################################################
-/* *************************************************************************************************************/
-// Bridging mrbs into Churchinfo
-// Copyright of ChurchInfo: www.churchdb.org
-// Bridging developed by Frederick To
-// This bridge uses the same MRBS control constants in MRBS modules but gets mysql connection information from churchinfo in order to access same database
-// The following include gets database connection parameter from ChurchInfo.  Then MRBS parameters are assigned accordingly.  Once database can be
-// connected, other parameters will be assigned from church config database in order to improve configurability
-
-require "../Include/Config.php";
-require "../Include/Functions.php";
-
-$sSERVERNAME = 'localhost';
-$sUSER = 'root';
-$sPASSWORD = '';
-$sDATABASE = 'churchinfo';
 
 ###################
 # Database settings
@@ -31,17 +16,13 @@ $sDATABASE = 'churchinfo';
 $dbsys = "mysql";
 # Hostname of database server. For pgsql, can use "" instead of localhost
 # to use Unix Domain Sockets instead of TCP/IP.
-# $db_host = "localhost";
-$db_host = $sSERVERNAME;
+$db_host = "localhost";
 # Database name:
-# $db_database = "mrbs";
-$db_database = $sDATABASE;
+$db_database = "mrbs";
 # Database login user name:
-# $db_login = "root";
-$db_login = $sUSER;
+$db_login = "mrbs";
 # Database login password:
-# $db_password = '';
-$db_password = $sPASSWORD;
+$db_password = 'mrbs-password';
 # Prefix for table names.  This will allow multiple installations where only
 # one database is available
 $db_tbl_prefix = "mrbs_";
@@ -51,14 +32,14 @@ $db_tbl_prefix = "mrbs_";
 ################################
 # Site identification information
 #################################
-$mrbs_admin = "admin";
+$mrbs_admin = "Your Administrator";
 $mrbs_admin_email = "admin_email@your.org";
 
 # This is the text displayed in the upper left corner of every page. Either
 # type the name of your organization, or you can put your logo like this :
 # $mrbs_company = "<a href=http://www.your_organisation.com/>
 # <img src=your_logo.gif border=0></a>";
-$mrbs_company = $sChurchName;
+$mrbs_company = "Your Company";
 
 # This is to fix URL problems when using a proxy in the environment.
 # If links inside MRBS appear broken, then specify here the URL of
@@ -67,8 +48,8 @@ $mrbs_company = $sChurchName;
 # It is also recommended that you set this if you intend to use email
 # notifications, to ensure that the correct URL is displayed in the
 # notification.
-# $url_base = "";
-$url_base = $_SERVER['PHP_SELF'].'/mrbs';
+$url_base = "";
+
 
 ###################
 # Calendar settings
@@ -80,20 +61,16 @@ $url_base = $_SERVER['PHP_SELF'].'/mrbs';
 # the default) or user defined periods (TRUE).  If user-defined periods
 # are used then $resolution, $morningstarts, $eveningends,
 # $eveningends_minutes and $twentyfourhour_format are ignored.
-#$enable_periods = FALSE;
-$enable_periods = $sMRBS_eable_periods;
+$enable_periods = FALSE;
 
 # Resolution - what blocks can be booked, in seconds.
 # Default is half an hour: 1800 seconds.
-# $resolution = 1800;
-$resolution = $sMRBS_resolution;
+$resolution = 1800;
 
 # Start and end of day, NOTE: These are integer hours only, 0-23, and
 # morningstarts must be < eveningends. See also eveningends_minutes.
-# $morningstarts = 7;
-$morningstarts = $sMRBS_morningstarts;
-# $eveningends   = 19;
-$eveningends   = $sMRBS_eveningends;
+$morningstarts = 7;
+$eveningends   = 19;
 
 # Minutes to add to $morningstarts to get to the real start of the day.
 # Be sure to consider the value of $eveningends_minutes if you change
@@ -102,16 +79,14 @@ $eveningends   = $sMRBS_eveningends;
 # morningstarts = 8 and morningstarts_minutes = 30 then for the last
 # period to start at say 4:30pm you would need to set eveningends = 16
 # and eveningends_minutes = 30
-# $morningstarts_minutes = 0;
-$morningstarts_minutes = $sMRBS_morningstart_min;
+$morningstarts_minutes = 0;
 
 # Minutes to add to $eveningends hours to get the real end of the day.
 # Examples: To get the last slot on the calendar to be 16:30-17:00, set
 # eveningends=16 and eveningends_minutes=30. To get a full 24 hour display
 # with 15-minute steps, set morningstarts=0; eveningends=23;
 # eveningends_minutes=45; and resolution=900.
-# $eveningends_minutes = 0;
-$eveningends_minutes = $sMRBS_eveningends_min;
+$eveningends_minutes = 0;
 
 # Define the name or description for your periods in chronological order
 # For example:
@@ -130,17 +105,14 @@ $periods[] = "Period&nbsp;1";
 $periods[] = "Period&nbsp;2";
 
 # Start of week: 0 for Sunday, 1 for Monday, etc.
-# $weekstarts = 0;
-$weekstarts = $sMRBS_weekstarts;
+$weekstarts = 0;
 
 # Trailer date format: 0 to show dates as "Jul 10", 1 for "10 Jul"
-# $dateformat = 0;
-$dateformat = $sMRBS_dateformat;
+$dateformat = 0;
 
 # Time format in pages. 0 to show dates in 12 hour format, 1 to show them
 # in 24 hour format
-# $twentyfourhour_format = 1;
-$twentyfourhour_format = $sMRBS_24hrs_format;
+$twentyfourhour_format = 1;
 
 ########################
 # Miscellaneous settings
@@ -150,28 +122,23 @@ $twentyfourhour_format = $sMRBS_24hrs_format;
 $max_rep_entrys = 365 + 1;
 
 # Default report span in days:
-# $default_report_days = 60;
-$default_report_days = $sMRBS_default_rpt_days;
+$default_report_days = 60;
 
 # Results per page for searching:
-# $search["count"] = 20;
-$search["count"] = $sMRBS_search_count;
+$search["count"] = 20;
 
 # Page refresh time (in seconds). Set to 0 to disable
-# $refresh_rate = 0;
-$refresh_rate = $sMRBS_refresh_rate;
+$refresh_rate = 0;
 
 # should areas be shown as a list or a drop-down select box?
-# $area_list_format = "list";
-$area_list_format = $sMRBS_area_list_fmt;
+$area_list_format = "list";
 #$area_list_format = "select";
 
 # Entries in monthly view can be shown as start/end slot, brief description or
 # both. Set to "description" for brief description, "slot" for time slot and
 # "both" for both. Default is "both", but 6 entries per day are shown instead
 # of 12.
-# $monthly_view_entries_details = "both";
-$monthly_view_entries_details = $sMRBS_mon_v_entries_dtl;
+$monthly_view_entries_details = "both";
 
 # To view weeks in the bottom (trailer.inc) as week numbers (42) instead of
 # 'first day of the week' (13 Oct), set this to TRUE
@@ -200,10 +167,10 @@ $default_room = 0;
 ###############################################
 # Authentication settings - read AUTHENTICATION
 ###############################################
-$auth["session"] = "pkg"; # How to get and keep the user ID. One of
+$auth["session"] = "php"; # How to get and keep the user ID. One of
 			  # "http" "php" "cookie" "ip" "host" "nt" "omni"
 			  # "remote_user"
-$auth["type"] = "pkg"; # How to validate the user/password. One of "none"
+$auth["type"] = "config"; # How to validate the user/password. One of "none"
                           # "config" "db" "db_ext" "pop3" "imap" "ldap" "nis"
                           # "nw" "ext".
 
@@ -213,8 +180,8 @@ $auth["type"] = "pkg"; # How to validate the user/password. One of "none"
 $cookie_path_override = '';
 
 # The list of administrators (can modify other peoples settings)
-#$auth["admin"][] = "127.0.0.1";	# localhost IP address. Useful with IP sessions.
-//$auth["admin"][] = "administrator";	# A user name from the user list. Useful
+$auth["admin"][] = "127.0.0.1";	# localhost IP address. Useful with IP sessions.
+$auth["admin"][] = "administrator";	# A user name from the user list. Useful 
                                     #with most other session schemes.
 #$auth["admin"][] = "10.0.0.1";
 #$auth["admin"][] = "10.0.0.2";
@@ -222,9 +189,9 @@ $cookie_path_override = '';
 
 # 'auth_config' user database
 # Format: $auth["user"]["name"] = "password";
-//$auth["user"]["administrator"] = "secret";
-//$auth["user"]["alice"] = "a";
-//$auth["user"]["bob"] = "b";
+$auth["user"]["administrator"] = "secret";
+$auth["user"]["alice"] = "a";
+$auth["user"]["bob"] = "b";
 
 # 'session_http' configuration settings
 $auth["realm"]  = "mrbs";
@@ -432,8 +399,9 @@ $override_locale = "";
 # IF your language faq file is available, set $faqfilelang to match the
 # end of the file name, including the underscore (ie. for site_faq_fr.html
 # use "_fr"
-$faqfilelang = "";
+$faqfilelang = ""; 
 
+include 'config_CI.inc.php';
 # This next require must be done after the definitions above, as the definitions
 # are used in the included file
 require_once "language.inc";
