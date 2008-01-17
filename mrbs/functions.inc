@@ -1,6 +1,6 @@
 <?php
 
-# $Id: functions.inc,v 1.2 2007/09/25 05:00:38 amagrace Exp $
+# $Id: functions.inc,v 1.3 2008/01/17 11:33:42 mikewiltwork Exp $
 
 # probably a bad place to put this, but for error reporting purposes
 # $pview must be defined. if it's not then there's errors generated all
@@ -158,8 +158,7 @@ function ChangeOptionDays(formObj, prefix)
 	 if ( $GLOBALS["pview"] != 1 ) { ?>
 
    <?php # show a warning if this is using a low version of php
-       if (substr(phpversion(), 0, 1) == 3)
-	       echo get_vocab("not_php3");
+       if (substr(phpversion(), 0, 1) <= 3)
 	       echo get_vocab("not_php3");
 //       if (!empty($locale_warning))
 //               echo "[Warning: ".$locale_warning."]";
