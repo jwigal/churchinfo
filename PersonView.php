@@ -233,7 +233,9 @@ gettext("List View") . "</a> ";
 	<?php
 		echo "<font size=\"4\"><b>";
 		echo FormatFullName($per_Title, $per_FirstName, $per_MiddleName, $per_LastName, $per_Suffix, 0);
-		echo "</font></b><br>";
+ 	// added $qrz variable to mapquest link
+ 		echo "</font></b> $qrz <br>";
+     //end qrz modification by JAW
 
 		if ($fam_ID != "") {
 			echo "<font size=\"2\">(";
@@ -832,6 +834,13 @@ if ($next_link_text) {
 }
 echo " | <a class=\"SmallText\" href=\"SelectList.php?mode=person\">" .
 gettext("List View") . "</a> ";
+// qrz.com modification by JAW
+ 		if(ereg("^[a-zA-Z]{1,2}[0-9][a-zA-Z]{1,3}$",$per_Suffix)) {
+ 			$qrz = "&nbsp;&nbsp;<a class=\"SmallText\" target=\"_blank\" href=\"http://qrz.com/$per_Suffix\">qrz.com</a> ";
+ 		}else {
+ 			$qrz = "";
+ 		}
+//end $qrz variable definition
 ?>
 
 <p class="SmallText">

@@ -313,7 +313,8 @@ if ($iMode == 1 || $iMode == 2)
         } else
 		{
             $sFilterWhereExt =	" AND (per_FirstName LIKE '%" . $sFilter . "%' " .
-								" OR per_LastName LIKE '%" . $sFilter . "%') ";
+				//add callsign search (Jeff Wigal added 4/11/2007)
+								" OR per_LastName LIKE '%" . $sFilter . "%' OR per_suffix LIKE '%" . $sFilter . "%' ";
 		}
     }
 
